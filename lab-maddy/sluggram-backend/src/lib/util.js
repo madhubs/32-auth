@@ -50,13 +50,12 @@ export const s3UploadMulterFileAndClean = (data) => {
     Key: `${data.filename}.${data.originalname}`,
     Body: fs.createReadStream(data.path),
   }).promise()
-  // allways remove file and either pass on failure or success
   .catch(err => fs.remove(data.path).then(() => {throw err}));
-  .then(s3Data => fs.remove(data.path).then(() => s3Data));
+  .then(s3Data => fs.remove(data.path).then(() => s3Data))
 };
 
 export const pagerCreate = (model, populate='') => (req, query={}) => {
-  let offset = (Number(req.query.page) - 1) || 0
+  let offset = (Number(req.query.page) - 1) || 0;
   let itemLimit = 100
   let route = `${process.env.API_URL}/${model.modelName}s?page=`
   return model.count()

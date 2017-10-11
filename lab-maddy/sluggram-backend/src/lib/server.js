@@ -17,23 +17,23 @@ const state = {
 export const start = () => {
   return new Promise((resolve, reject) => {
     if (state.isOn)
-    return reject(new Error('USAGE ERROR: the state is on'));
+      return reject(new Error('USAGE ERROR: the state is on'));
     state.isOn = true;
     db.start()
     .then(() => {
       state.http = app.listen(process.env.PORT, () => {
-        log('__SERVER_UP__', process.env.PORT)
-        resolve()
-      });;
-    });
-    .catch(reject)
+        log('__SERVER_UP__', process.env.PORT);
+        resolve();
+      });
+    })
+    .catch(reject);
   });
 };
 
 export const stop = () => {
   return new Promise((resolve, reject) => {
     if(!state.isOn)
-    return reject(new Error('USAGE ERROR: the state is off'))
+      return reject(new Error('USAGE ERROR: the state is off'));
     return db.stop()
     .then(() => {
       state.http.close(() => {
