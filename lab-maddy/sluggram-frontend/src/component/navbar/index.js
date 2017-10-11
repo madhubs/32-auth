@@ -19,14 +19,14 @@ class Navbar extends React.Component {
             }
           </ul>
         </nav>
-      </header >
-    )
+      </header>
+    );
   }
 }
 
 let mapStateToProps = state => ({
-  auth: state.auth
-})
+  auth: state.auth,
+});
 
 let mapDispatchToProps = dispatch => ({
   tokenDelete: () => dispatch(tokenDelete()),

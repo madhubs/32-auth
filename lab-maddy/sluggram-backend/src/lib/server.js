@@ -37,12 +37,12 @@ export const stop = () => {
     return db.stop()
     .then(() => {
       state.http.close(() => {
-        log('__SERVER_DOWN__')
-        state.isOn = false
-        state.http = null
-        resolve()
-      })
+        log('__SERVER_DOWN__');
+        state.isOn = false;
+        state.http = null;
+        resolve();
+      });
     })
-    .catch(reject)
-  })
-}
+    .catch(reject);
+  });
+};
