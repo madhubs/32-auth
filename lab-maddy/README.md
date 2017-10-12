@@ -21,14 +21,36 @@ return (
      </div>
    );
 ```
+CHANGED TO:
+```
+/REFORMATTED
+    return (
+       <div>
+        {this.props.auth ?
+          <h2>hello world from landing!</h2> :
+          <AuthForm
+          auth={params.auth}
+          onComplete={handleComplete}/>
+        }
+       </div>
+    );
+  }
+}
 
-## Submission Instructions
-* fork this repository & create a new branch for your work
-* write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
-* push to your repository
-* submit a pull request to this repository
-* submit a link to your PR in canvas
-* write a question and observation on canvas
+//added on 10/11 before starting on lab 33
+let mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+let mapDispatchToProps = dispatch => ({
+  signup: user => dispatch(signupRequest(user)),
+  login: user => dispatch(loginRequest(user)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingContainer);
+```
+
 
 ## Learning Objectives
 * We will be able to manage basic and bearer auth on the client side
