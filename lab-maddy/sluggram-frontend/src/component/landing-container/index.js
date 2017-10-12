@@ -12,6 +12,7 @@ class LandingContainer extends React.Component {
       this.props.login :
       this.props.signup;
 
+//REFORMATTED
     return (
        <div>
         {this.props.auth ?
