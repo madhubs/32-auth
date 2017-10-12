@@ -14,23 +14,22 @@ class LandingContainer extends React.Component {
 
     return (
        <div>
-         <h2>hello world from landing!</h2>
-         <AuthForm
-           auth={params.auth}
-           onComplete={handleComplete}/>
-
-         <section>
-           {utils.renderIf(this.props.auth,
-             <Dashboard
-             />
-           )}
-         </section>
+        {this.props.auth ?
+          <h2>hello world from landing!</h2> :
+          <AuthForm
+          auth={params.auth}
+          onComplete={handleComplete}/>
+        }
        </div>
     );
   }
 }
 
-let mapStateToProps = () => ({});
+//added on 10/11 before starting on lab 33
+let mapStateToProps = state => ({
+  auth: state.auth,
+});
+
 let mapDispatchToProps = dispatch => ({
   signup: user => dispatch(signupRequest(user)),
   login: user => dispatch(loginRequest(user)),
